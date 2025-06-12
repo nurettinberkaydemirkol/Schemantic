@@ -1,0 +1,10 @@
+C:\Users\berka\Projects\ico\Schemantic\target\debug\deps\parking_lot_core-31f004690bda0242.d: C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\lib.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\parking_lot.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\spinwait.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\thread_parker\mod.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\util.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\word_lock.rs
+
+C:\Users\berka\Projects\ico\Schemantic\target\debug\deps\libparking_lot_core-31f004690bda0242.rmeta: C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\lib.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\parking_lot.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\spinwait.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\thread_parker\mod.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\util.rs C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\word_lock.rs
+
+C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\lib.rs:
+C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\parking_lot.rs:
+C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\spinwait.rs:
+C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\thread_parker\mod.rs:
+C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\util.rs:
+C:\Users\berka\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\parking_lot_core-0.9.11\src\word_lock.rs:
