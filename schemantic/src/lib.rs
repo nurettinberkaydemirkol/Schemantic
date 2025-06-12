@@ -1,12 +1,14 @@
-use pyo3::prelude::*;
+mod types;
+mod utils;
+mod mean_cluster;
+mod query;
+mod index;
 
-#[pyfunction]
-fn hello(name: &str) -> String {
-    format!("Merhaba, {}!", name)
-}
+use pyo3::prelude::*;
+use crate::index::VectorCube;
 
 #[pymodule]
 fn schemantic(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(hello, m)?)?;
+    m.add_class::<VectorCube>()?;
     Ok(())
 }
