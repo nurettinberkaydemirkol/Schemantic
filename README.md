@@ -1,2 +1,2 @@
 # Schemantic
-Search Smarter Across the Documents
+A Python Library Search Smarter Across the Documents
