@@ -3,7 +3,13 @@ use pyo3::types::{PyList, PyTuple};
 use std::collections::HashMap;
 use crate::types::Record;
 use crate::utils::chunked_means;
-use crate::mean_cluster::cluster_by_chunked_means;
+
+// cluster utils
+use crate::cluster::mean_cluster::mean_cluster;
+use crate::cluster::l2_cluster::l2_cluster;
+use crate::cluster::knn_cluster::knn_cluster;
+
+// query utils
 use crate::query::find_closest_column_vec;
 
 #[pyclass]
@@ -16,7 +22,8 @@ pub struct VectorCube {
 #[pymethods]
 impl VectorCube {
     #[new]
-    fn new(py_list: &PyList) -> Self {
+    #[pyo3(signature = (py_list, cluster_type="mean"))]
+    fn new(py_list: &PyList, cluster_type: &str) -> Self {
         let records: Vec<Record> = py_list.iter().enumerate().map(|(i, item)| {
             let tup: &PyTuple = item.downcast().unwrap();
             let embed: Vec<f32> = tup.get_item(1).unwrap().extract().unwrap();
@@ -28,6 +35,12 @@ impl VectorCube {
         for r in &records {
             id_to_string.insert(r.id, r.string.clone());
         }
+
+        let columns = match cluster_type {
+            "knn" => cluster_by_knn(&records, 5),
+            "l2" => cluster_by_l2_sorting(&records, 5),
+            _ => cluster_by_chunked_means(&records, 5),
+        };
 
         let columns = cluster_by_chunked_means(&records, 5);
         Self { records, columns, id_to_string }
