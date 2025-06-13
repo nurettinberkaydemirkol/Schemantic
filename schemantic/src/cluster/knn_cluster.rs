@@ -2,11 +2,11 @@ use crate::types::Record;
 use crate::utils::chunked_means;
 
 
-fn l2_distance(a: &[f32], b: &[f32]) -> f32 {
+pub fn l2_distance(a: &[f32], b: &[f32]) -> f32 {
     a.iter().zip(b).map(|(a,b)| (a-b).powi(2)).sum()
 }
 
-pub fn knn_cluster(records: &[Records], k: usize) -> Vec<Vec<usize>> {
+pub fn knn_cluster(records: &[Record], k: usize) -> Vec<Vec<usize>> {
     let data: Vec<(usize, Vec<f32>)> = records
         .iter()
         .map(|r| (r.id, chunked_means(&r.embed, 4)))

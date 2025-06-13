@@ -1,6 +1,6 @@
 mod types;
 mod utils;
-mod mean_cluster;
+mod cluster;
 mod query;
 mod index;
 

@@ -37,12 +37,11 @@ impl VectorCube {
         }
 
         let columns = match cluster_type {
-            "knn" => cluster_by_knn(&records, 5),
-            "l2" => cluster_by_l2_sorting(&records, 5),
-            _ => cluster_by_chunked_means(&records, 5),
+            "knn" => knn_cluster(&records, 5),
+            "l2" => l2_cluster(&records, 5),
+            _ => mean_cluster(&records, 5),
         };
 
-        let columns = cluster_by_chunked_means(&records, 5);
         Self { records, columns, id_to_string }
     }
 

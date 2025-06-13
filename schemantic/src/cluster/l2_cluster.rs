@@ -1,3 +1,7 @@
+use crate::cluster::knn_cluster::l2_distance;
+use crate::types::Record;
+use crate::utils::chunked_means;
+
 fn mean_vector(vectors: &[Vec<f32>]) -> Vec<f32> {
     let len = vectors[0].len();
     let mut mean = vec![0.0; len];
