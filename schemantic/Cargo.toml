@@ -3,9 +3,26 @@ name = "schemantic"
 version = "0.1.0"
 edition = "2021"
 
+[build-system]
+requires = ["maturin>=1.0"]
+build-backend = "maturin.utils"
+
 [lib]
 name = "schemantic"
 crate-type = ["cdylib"]
+description = "Schemantic: fast Rust-backed embedding clustering & search"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name="Nurettin Berkay Demirkol", email="berkaydemirkol2@gmail.com" }
+]
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Rust",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
 
 [dependencies]
 pyo3 = { version = "0.21", features = ["extension-module", "auto-initialize"] }
