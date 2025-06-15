@@ -45,14 +45,20 @@ impl VectorCube {
         Self { records, columns, id_to_string }
     }
 
-    fn query(&self, query_embed: Vec<f32>) -> Vec<String> {
+    #[pyo3(signature = (query_embed, query_type = "mean"))]
+    fn query(&self, query_embed: Vec<f32>, query_type: &str) -> Vec<String> {
         let id_to_meanvec: HashMap<usize, Vec<f32>> = self
             .records
             .iter()
             .map(|r| (r.id, chunked_means(&r.embed, 4)))
             .collect();
 
-        let col_idx = find_closest_column_vec(&self.columns, &id_to_meanvec, &query_embed);
+        let col_idx = match query_type {
+            "l2" => find_closest_column_l2(&self.columns, &id_to_meanvec, &query_embed),
+            "knn" => find_closest_column_knn(&self.columns, &id_to_meanvec, &query_embed, 5),
+            _ => find_closest_column_vec(&self.columns, &id_to_meanvec, &query_embed),
+        };
+
         self.columns[col_idx]
             .iter()
             .map(|id| self.id_to_string[id].clone())
