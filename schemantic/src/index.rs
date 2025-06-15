@@ -7,10 +7,12 @@ use crate::utils::chunked_means;
 // cluster utils
 use crate::cluster::mean_cluster::mean_cluster;
 use crate::cluster::l2_cluster::l2_cluster;
+use crate::cluster::l1_cluster::l1_cluster;
+use crate::cluster::cosine_cluster::cosine_cluster;
 use crate::cluster::knn_cluster::knn_cluster;
 
 // query utils
-use crate::query::{find_closest_column_knn, find_closest_column_l2, find_closest_column_vec};
+use crate::query::{find_closest_column_knn, find_closest_column_l2, find_closest_column_vec, find_closest_column_cosine};
 
 #[pyclass]
 pub struct VectorCube {
@@ -37,9 +39,11 @@ impl VectorCube {
         }
 
         let columns = match cluster_type {
-            "knn" => knn_cluster(&records, 5),
-            "l2" => l2_cluster(&records, 5),
-            _ => mean_cluster(&records, 5),
+            "knn" => knn_cluster(&records, 3),
+            "cosine" => cosine_cluster(&records, 3),
+            "l2" => l2_cluster(&records, 3),
+            "l1" => l2_cluster(&records, 3),
+            _ => mean_cluster(&records, 3),
         };
 
         Self { records, columns, id_to_string }
@@ -56,6 +60,7 @@ impl VectorCube {
         let col_idx = match query_type {
             "l2" => find_closest_column_l2(&self.columns, &id_to_meanvec, &query_embed),
             "knn" => find_closest_column_knn(&self.columns, &id_to_meanvec, &query_embed, 5),
+            "cosine" => find_closest_column_cosine(&self.columns, &id_to_meanvec, &query_embed),
             _ => find_closest_column_vec(&self.columns, &id_to_meanvec, &query_embed),
         };
 
