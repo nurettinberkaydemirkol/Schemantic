@@ -10,7 +10,7 @@ use crate::cluster::l2_cluster::l2_cluster;
 use crate::cluster::knn_cluster::knn_cluster;
 
 // query utils
-use crate::query::find_closest_column_vec;
+use crate::query::{find_closest_column_knn, find_closest_column_l2, find_closest_column_vec};
 
 #[pyclass]
 pub struct VectorCube {
