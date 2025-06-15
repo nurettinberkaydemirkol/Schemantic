@@ -10,6 +10,7 @@ crate-type = ["cdylib"]
 [dependencies]
 pyo3 = { version = "0.21", features = ["extension-module", "auto-initialize"] }
 rayon = "1.10"
+hnsw = "0.7"
 ndarray = "0.15"
 
 [package.metadata.maturin]
