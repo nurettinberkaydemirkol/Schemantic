@@ -42,7 +42,7 @@ impl VectorCube {
             "knn" => knn_cluster(&records, 3),
             "cosine" => cosine_cluster(&records, 3),
             "l2" => l2_cluster(&records, 3),
-            "l1" => l2_cluster(&records, 3),
+            "l1" => l1_cluster(&records, 3),
             _ => mean_cluster(&records, 3),
         };
 

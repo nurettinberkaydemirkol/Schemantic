@@ -15,17 +15,17 @@ fn cosine_similarity(a: &[f32], b: &[f32]) -> f32 {
 }
 
 #[pyfunction]
-pub fn same_search(
+pub fn same_search_unique(
     py_list: &PyAny,
     threshold: f32,
     brute_force: bool,
-) -> PyResult<Vec<((usize, Vec<f32>, String), (usize, Vec<f32>, String))>> {
+) -> PyResult<Vec<(usize, Vec<f32>, String)>> {
     let records: Vec<(usize, Vec<f32>, String)> = py_list.extract()?;
 
     let id_to_embed: HashMap<usize, Vec<f32>> =
         records.iter().map(|(id, embed, _)| (*id, embed.clone())).collect();
 
-    let mut results = Vec::new();
+    let mut id_set = std::collections::HashSet::new();
 
     if brute_force {
         for i in 0..records.len() {
@@ -34,7 +34,8 @@ pub fn same_search(
                 let (id2, _, _) = &records[j];
                 let sim = cosine_similarity(&id_to_embed[id1], &id_to_embed[id2]);
                 if sim > threshold {
-                    results.push((records[i].clone(), records[j].clone()));
+                    id_set.insert(*id1);
+                    id_set.insert(*id2);
                 }
             }
         }
@@ -57,14 +58,18 @@ pub fn same_search(
                     let id2 = cluster[j];
                     let sim = cosine_similarity(&id_to_embed[&id1], &id_to_embed[&id2]);
                     if sim > threshold {
-                        let r1 = records.iter().find(|(id, _, _)| *id == id1).unwrap();
-                        let r2 = records.iter().find(|(id, _, _)| *id == id2).unwrap();
-                        results.push((r1.clone(), r2.clone()));
+                        id_set.insert(id1);
+                        id_set.insert(id2);
                     }
                 }
             }
         }
     }
 
-    Ok(results)
+    let filtered: Vec<(usize, Vec<f32>, String)> = records
+        .into_iter()
+        .filter(|(id, _, _)| id_set.contains(id))
+        .collect();
+
+    Ok(filtered)
 }
