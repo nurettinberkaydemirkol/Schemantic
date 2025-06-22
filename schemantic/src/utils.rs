@@ -17,6 +17,9 @@ pub fn l2_distance_vec(a: &[f32], b: &[f32]) -> f32 {
 }
 
 pub fn mean_vector(vectors: &[Vec<f32>]) -> Vec<f32> {
+    if vectors.is_empty() {
+        panic!("mean_vector() called with empty input!");
+    }
     let len = vectors[0].len();
     let mut mean = vec![0.0; len];
     for vec in vectors {

@@ -15,7 +15,7 @@ fn cosine_similarity(a: &[f32], b: &[f32]) -> f32 {
 }
 
 #[pyfunction]
-pub fn same_search_unique(
+pub fn same_search(
     py_list: &PyAny,
     threshold: f32,
     brute_force: bool,
